@@ -1,0 +1,11 @@
+[package]
+name = "streams"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-stream = "0.3.4"
+tokio = { version = "1.26.0", features = ["full"] }
+futures = "0.3.26"
+rand_distr = "0.4.3"
+rand = "0.8.5"
