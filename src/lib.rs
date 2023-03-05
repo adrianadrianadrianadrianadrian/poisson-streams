@@ -7,12 +7,12 @@ use tokio::{
 };
 
 pub struct Event {
-    pub inqueued_time: Instant,
+    pub enqueued_time: Instant,
 }
 
 impl Event {
     pub fn new(now: Instant) -> Self {
-        Self { inqueued_time: now }
+        Self { enqueued_time: now }
     }
 }
 
@@ -31,7 +31,7 @@ pub async fn stream_consumer(work_millis: u64, mut rx: UnboundedReceiver<Event>)
 
     while let Some(evt) = rx.recv().await {
         let now = Instant::now();
-        let enqueued = evt.inqueued_time;
+        let enqueued = evt.enqueued_time;
         let delta = now - enqueued;
         deltas.push(delta);
 
@@ -41,7 +41,7 @@ pub async fn stream_consumer(work_millis: u64, mut rx: UnboundedReceiver<Event>)
 
     let len = deltas.len();
     println!(
-        "Avg enqueued time: {:?}ms",
+        "Avg queued time: {:?}ms",
         deltas.iter().map(|d| d.as_millis()).sum::<u128>() / (len as u128)
     )
 }
