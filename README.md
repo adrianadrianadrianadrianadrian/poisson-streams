@@ -1,0 +1,1 @@
+So to answer the question 'Is the parallelism provided by EventHub partitions sufficient?', I decided to just simulate things in Rust instead of doing the math (I'm lazy).
